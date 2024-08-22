@@ -3,22 +3,24 @@ let sectionPrincipale = document.querySelector('section');
 
 // variables "nom" dans la fonction permet d'aller chercher l'objet en question dans le .json
 async function recupChecklist(nom) {
-    const newDiv = document.createElement('div');
-    const newImg = document.createElement('img');
-    newDiv.appendChild(newImg);
-    const newForm = document.createElement('form');
-    newDiv.appendChild(newForm);
-
     let test = await fetch('./checklist.json');
     const dataTransformed = await test.json();
+
+    const newDiv = document.createElement('div');
+    let ordre = "order: " + dataTransformed[nom].id;
+    newDiv.setAttribute("style", ordre);
     
     sectionPrincipale.append(newDiv);
     
     
-    
+    const newImg = document.createElement('img');
     let imageAchievement = dataTransformed[nom].image;
-    console.log(imageAchievement)
+    newImg.setAttribute("src", imageAchievement);
+    newDiv.appendChild(newImg);
     
+    const newForm = document.createElement('form');
+    newDiv.appendChild(newForm);
+
     let valueCheckbox = dataTransformed[nom].value;
     let newInput = null;
     let newLabel = document.createElement('label');
@@ -35,9 +37,8 @@ async function recupChecklist(nom) {
         newInput.setAttribute("type", "checkbox");
         newInput.setAttribute("name", nomCheckbox);
         newInput.setAttribute("value", valueCheckbox);
-        newLabel.innerText = nomCheckbox;
         newLabel.setAttribute("for", nomCheckbox);
-        console.log(nomCheckbox);
+        newLabel.innerText = nomCheckbox;
 
         newForm.append(newInput);
         newForm.innerHTML += " ";

@@ -21,7 +21,7 @@
     "masterOfInfusions":{
         "id": 2,
         "name": "Master of Infusions",
-        "image":"./images/master_of_infusions.png",
+        "image":"./images/master_of_infusion.png",
         "value":"infusion_",
         "checkboxes":[
             "Refined Infusion",
@@ -284,7 +284,7 @@
     "masterOfExpressions":{
         "id": 7,
         "name": "Master of Expressions",
-        "image":"./images/master_of_expressions.png",
+        "image":"./images/master_of_expression.png",
         "value":"expression_",
         "checkboxes":[
             "Beckon",
