@@ -1,4 +1,5 @@
 {
+    "complexAchievements":{
     "supremeWeaponReinforcement":{
         "id": 1,
         "name": "Supreme Weapon Reinforcement",
@@ -17,7 +18,6 @@
             "Weapon at +10"
         ]
     },
-
     "masterOfInfusions":{
         "id": 2,
         "name": "Master of Infusions",
@@ -41,7 +41,6 @@
             "Hollow Infusion"
         ]
     },
-
     "masterOfSorceries":{
         "id": 3,
         "name": "Master of Sorceries",
@@ -84,7 +83,6 @@
             "Dark Edge"
         ]
     },
-
     "masterOfPyromancies":{
         "id": 4,
         "name": "Master of Pyromancies",
@@ -120,7 +118,6 @@
             "Black Serpent"
         ]
     },
-
     "masterOfMiracles":{
         "id": 5,
         "name": "Master of Miracles",
@@ -164,7 +161,6 @@
             "Lifehunt Scythe"
         ]
     },
-
     "masterOfRings": {
         "id": 6,
         "name": "Master of Rings",
@@ -280,7 +276,6 @@
             "Ring of Sacrifice"
         ]
     },
-
     "masterOfExpressions":{
         "id": 7,
         "name": "Master of Expressions",
@@ -318,7 +313,6 @@
             "Path of The Dragon"
         ]
     },
-
     "ultimateBonfire":{
         "id": 8,
         "name": "Ultimate Bonfire",
@@ -337,7 +331,6 @@
             "Grand Archives Bone Shard"
         ]
     },
-
     "ultimateEstus":{
         "id": 9,
         "name": "Ultimate Estus",
@@ -356,5 +349,22 @@
             "Grand Archives Estus Shard",
             "Firelink Shrine Estus Shard"
         ]
+    }},
+    "simpleAchievements":{
+        "firstTimes":{
+
+        },
+        "bosses":{
+
+        },
+        "covenants":{
+
+        },
+        "locations":{
+
+        },
+        "endings":{
+
+        }
     }
 }

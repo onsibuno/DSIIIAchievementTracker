@@ -7,28 +7,28 @@ async function recupChecklist(nom) {
     const dataTransformed = await test.json();
 
     const newDiv = document.createElement('div');
-    let ordre = "order: " + dataTransformed[nom].id;
+    let ordre = "order: " + dataTransformed.complexAchievements[nom].id;
     newDiv.setAttribute("style", ordre);
     
     sectionPrincipale.append(newDiv);
     
     
     const newImg = document.createElement('img');
-    let imageAchievement = dataTransformed[nom].image;
+    let imageAchievement = dataTransformed.complexAchievements[nom].image;
     newImg.setAttribute("src", imageAchievement);
     newDiv.appendChild(newImg);
     
     const newForm = document.createElement('form');
     newDiv.appendChild(newForm);
 
-    let valueCheckbox = dataTransformed[nom].value;
+    let valueCheckbox = dataTransformed.complexAchievements[nom].value;
     let newInput = null;
     let newLabel = document.createElement('label');
     let newBreak = "<br>"
     newLabel.innerText = "";
 
     // Boucle qui créée les checkboxs pour chaque éléments du tableau
-    for (const nomCheckbox of dataTransformed[nom].checkboxes){
+    for (const nomCheckbox of dataTransformed.complexAchievements[nom].checkboxes){
 
         newLabel = document.createElement('label');
         newInput = document.createElement('input');
