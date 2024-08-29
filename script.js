@@ -8,6 +8,7 @@ async function recupChecklist(nom) {
 
     const newDiv = document.createElement('div');
     let ordre = "order: " + dataTransformed.complexAchievements[nom].id;
+    newDiv.setAttribute("id",nom);
     newDiv.setAttribute("style", ordre);
     
     sectionPrincipale.append(newDiv);
@@ -48,8 +49,21 @@ async function recupChecklist(nom) {
 }
 
 
-//appel de la fonction pour chacun des objets
+async function changerOrder(nom){
+    let test = await fetch('./checklist.json');
+    const dataTransformed = await test.json();
 
+    let ordre = "order: " + (dataTransformed.complexAchievements[nom].id + 10);
+    console.log(ordre);
+    document.getElementById(nom).setAttribute("style", ordre);
+
+}
+
+//appel de la fonction pour chacun des objets
+// let obj = [];
+// obj.forEach((value) => {
+//     recupChecklist(value)
+// });
 recupChecklist("supremeWeaponReinforcement")
 recupChecklist("masterOfInfusions")
 recupChecklist("masterOfSorceries")
@@ -59,3 +73,5 @@ recupChecklist("masterOfRings")
 recupChecklist("masterOfExpressions")
 recupChecklist("ultimateBonfire")
 recupChecklist("ultimateEstus")
+
+changerOrder("SupremeWeaponReinforcement")

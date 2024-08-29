@@ -352,7 +352,14 @@
     }},
     "simpleAchievements":{
         "firstTimes":{
-
+            "enkindle":{
+                "image":"./images/enkindle.png",
+                "description":"Light a bonfire flame for the first time"
+            },
+            "embrace_the_flame":{
+                "image":"./images/embrace_the_flame.png",
+                "description":"Become a Host of Embers for the first time"
+            }
         },
         "bosses":{
 
