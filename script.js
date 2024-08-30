@@ -48,30 +48,40 @@ async function recupChecklist(nom) {
     }
 }
 
+//appel de la fonction pour chacun des objets
+let complexAchievement = ["supremeWeaponReinforcement","masterOfInfusions","masterOfSorceries","masterOfPyromancies","masterOfMiracles","masterOfRings","masterOfExpressions","ultimateBonfire","ultimateEstus"];
+complexAchievement.forEach((value) => {
+    recupChecklist(value)
+});
 
-async function changerOrder(nom){
+
+//fonction pour mettre une boîte à la fin de la liste
+
+async function changeOrder(nom){
+
     let test = await fetch('./checklist.json');
     const dataTransformed = await test.json();
 
-    let ordre = "order: " + (dataTransformed.complexAchievements[nom].id + 10);
-    console.log(ordre);
-    document.getElementById(nom).setAttribute("style", ordre);
+    console.log(document.getElementById(nom));
 
+    let ordre = "order: " + (dataTransformed.complexAchievements[nom].id + 10);
+
+    console.log(ordre);
+
+    document.getElementById(nom).setAttribute("style", ordre);
 }
 
-//appel de la fonction pour chacun des objets
-// let obj = [];
-// obj.forEach((value) => {
-//     recupChecklist(value)
-// });
-recupChecklist("supremeWeaponReinforcement")
-recupChecklist("masterOfInfusions")
-recupChecklist("masterOfSorceries")
-recupChecklist("masterOfPyromancies")
-recupChecklist("masterOfMiracles")
-recupChecklist("masterOfRings")
-recupChecklist("masterOfExpressions")
-recupChecklist("ultimateBonfire")
-recupChecklist("ultimateEstus")
+changeOrder("masterOfInfusions");
 
-changerOrder("SupremeWeaponReinforcement")
+let toutLesInput = document.getElementById("supremeWeaponReinforcement");
+
+for(i=0; i<3; i++){
+    console.log(toutLesInput);
+}
+
+// if(getElementsByTagName(input).checked = true)[
+//     //     console.log("oui")
+//     // ];
+
+
+//    console.log(checkbox);
