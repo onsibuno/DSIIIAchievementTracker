@@ -46,6 +46,7 @@ async function recupChecklist(nom) {
         newForm.append(newLabel);
         newForm.innerHTML += newBreak;
     }
+    chercherLesInputs(nom);
 }
 
 //appel de la fonction pour chacun des objets
@@ -71,17 +72,31 @@ async function changeOrder(nom){
     document.getElementById(nom).setAttribute("style", ordre);
 }
 
-changeOrder("masterOfInfusions");
+// changeOrder("masterOfInfusions");
 
-let toutLesInput = document.getElementById("supremeWeaponReinforcement");
 
-for(i=0; i<3; i++){
-    console.log(toutLesInput);
+function chercherLesInputs(nom){
+let toutLesInput = document.querySelectorAll("#coucou > form > input") ;
+
+console.log(document.querySelectorAll("#" + nom + " > form > input")) ;
 }
 
-// if(getElementsByTagName(input).checked = true)[
-//     //     console.log("oui")
-//     // ];
+// if(toutLesInput.getElementsByTagName(input).checked = true)[
+//         console.log("oui")
+//     ];
 
+document.addEventListener('DOMContentLoaded', () => {
+    let toutLesInput = document.querySelectorAll("#coucou > form > input") ;
+
+    toutLesInput.forEach((value) => {
+        console.log(value.checked);
+        if(){
+
+        } else {
+            
+        }
+    });
+});
 
 //    console.log(checkbox);
+
