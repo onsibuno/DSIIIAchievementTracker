@@ -8,17 +8,17 @@ async function recupChecklist(nom) {
 
     const newDiv = document.createElement('div');
     let ordre = "order: " + dataTransformed.complexAchievements[nom].id;
-    newDiv.setAttribute("id",nom);
+    newDiv.setAttribute("id", nom);
     newDiv.setAttribute("style", ordre);
-    
+
     sectionPrincipale.append(newDiv);
-    
-    
+
+
     const newImg = document.createElement('img');
     let imageAchievement = dataTransformed.complexAchievements[nom].image;
     newImg.setAttribute("src", imageAchievement);
     newDiv.appendChild(newImg);
-    
+
     const newForm = document.createElement('form');
     newDiv.appendChild(newForm);
 
@@ -29,7 +29,7 @@ async function recupChecklist(nom) {
     newLabel.innerText = "";
 
     // Boucle qui créée les checkboxs pour chaque éléments du tableau
-    for (const nomCheckbox of dataTransformed.complexAchievements[nom].checkboxes){
+    for (const nomCheckbox of dataTransformed.complexAchievements[nom].checkboxes) {
 
         newLabel = document.createElement('label');
         newInput = document.createElement('input');
@@ -46,11 +46,19 @@ async function recupChecklist(nom) {
         newForm.append(newLabel);
         newForm.innerHTML += newBreak;
     }
-    chercherLesInputs(nom);
+
+    // ici appel de la fonction pour changer ordre + grisage 
+    
+    // un appel classique de la fonction
+    completedAchievement(nom);
+    // et un sur l'event listener des checkbox qui sera passé par référence
+    document.getElementById(nom).addEventListener('click', completedAchievement);
+
+
 }
 
 //appel de la fonction pour chacun des objets
-let complexAchievement = ["supremeWeaponReinforcement","masterOfInfusions","masterOfSorceries","masterOfPyromancies","masterOfMiracles","masterOfRings","masterOfExpressions","ultimateBonfire","ultimateEstus"];
+let complexAchievement = ["supremeWeaponReinforcement", "masterOfInfusions", "masterOfSorceries", "masterOfPyromancies", "masterOfMiracles", "masterOfRings", "masterOfExpressions", "ultimateBonfire", "ultimateEstus"];
 complexAchievement.forEach((value) => {
     recupChecklist(value)
 });
@@ -58,7 +66,7 @@ complexAchievement.forEach((value) => {
 
 //fonction pour mettre une boîte à la fin de la liste
 
-async function changeOrder(nom){
+async function changeOrder(nom) {
 
     let test = await fetch('./checklist.json');
     const dataTransformed = await test.json();
@@ -74,29 +82,18 @@ async function changeOrder(nom){
 
 // changeOrder("masterOfInfusions");
 
-
-function chercherLesInputs(nom){
-let toutLesInput = document.querySelectorAll("#coucou > form > input") ;
-
-console.log(document.querySelectorAll("#" + nom + " > form > input")) ;
-}
-
-// if(toutLesInput.getElementsByTagName(input).checked = true)[
-//         console.log("oui")
-//     ];
-
-document.addEventListener('DOMContentLoaded', () => {
-    let toutLesInput = document.querySelectorAll("#coucou > form > input") ;
-
-    toutLesInput.forEach((value) => {
+function completedAchievement(nom) {
+    console.log(nom + " :");
+    let toutLesInput = document.querySelectorAll("#" + nom + " > form > input");
+    let achievementBeingChecked = document.getElementById(nom);
+    for (let value of toutLesInput) {
         console.log(value.checked);
-        if(){
-
-        } else {
-            
+        if (value.checked == false) {
+            return "boucle incomplète";
         }
-    });
-});
-
-//    console.log(checkbox);
+    };
+    console.log("boucle finie");
+    changeOrder(nom);
+    achievementBeingChecked.setAttribute("class", "completed");
+}
 

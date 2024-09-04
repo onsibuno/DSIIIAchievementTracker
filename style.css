@@ -204,6 +204,11 @@ input[type="checkbox"]:focus{
     outline: none;
 }
 
+.completed{
+    background-color: rgb(12, 12, 12);
+    filter: grayscale(70%) blur(0.6px);
+}
+
 /* **************************** Footer *****************************/
 
 footer{
