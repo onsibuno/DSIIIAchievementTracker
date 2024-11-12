@@ -9,8 +9,8 @@ async function recupChecklist(nom) {
     const dataTransformed = await test.json();
 
     const newDiv = document.createElement('div');
-    let ordre = "order: " + dataTransformed.complexAchievements[nom].id;
     newDiv.setAttribute("id", nom);
+    let ordre = "order: " + dataTransformed.complexAchievements[nom].id;
     newDiv.setAttribute("style", ordre);
 
     sectionPrincipale.append(newDiv);
@@ -22,6 +22,11 @@ async function recupChecklist(nom) {
 
     const newForm = document.createElement('form');
     newDiv.appendChild(newForm);
+    // let newButton = "<button>Completed</button>"
+    const newButton = document.createElement('button');
+    newButton.innerText = "Completed"
+    newButton.setAttribute("class", "Button");
+    // newDiv.appendChild(newButton);
 
     let valueCheckbox = dataTransformed.complexAchievements[nom].value;
     let newInput = null;
@@ -56,8 +61,8 @@ async function recupChecklist(nom) {
     document.getElementById(nom).addEventListener('click', () => {
         completedAchievement(nom);
     });
-
-
+    
+    
 }
 
 //appel de la fonction pour chacun des objets
@@ -69,7 +74,7 @@ complexAchievement.forEach((value) => {
 
 //fonction pour mettre une boîte à la fin de la liste
 async function changeOrder(nom) {
-
+    
     let test = await fetch('./checklist.json');
     const dataTransformed = await test.json();
     let ordre = "order: " + (dataTransformed.complexAchievements[nom].id + 10);
@@ -93,11 +98,32 @@ function completedAchievement(identification) {
         if (value.checked == false) {
             resetOrder(identification);
             achievementBeingChecked.removeAttribute("class", "completed");
-            return "boucle incomplète";
+            return "boucle incomplète"; //sortie de boucle si incomplet
         }
     };
     console.log("Achievement Completed, and moved to the bottom of the list");
-
+    
     changeOrder(identification);
     achievementBeingChecked.setAttribute("class", "completed");
 }
+
+function completionButton() {
+    console.log("bouton pressé")
+    // let toutLesInput = document.querySelectorAll("#" + identification + " > form > input");
+    // // let achievementBeingChecked = document.getElementById(identification);
+    // for (let value of toutLesInput) {
+    //     if (value.checked == false) {
+    //         value.checked == true
+    //     }
+    // };
+}
+
+// let Buttons = document.querySelector("#supremeWeaponReinforcementButton");
+
+// Buttons.addEventListener('click', completionButton)
+
+// const leH1 = document.querySelectorAll("button")
+// // On ajoute l'événement (écouteur) sur un ou plusieurs éléments
+// leH1.addEventListener('click', () => {
+//     console.log('Mon titre principal a déclenché l\'événement `click`');
+// });
