@@ -15,3 +15,4 @@
 ## Current state of the projet
 
 I am not working on this project anymore i went through to make a way to display if an achievement is completed and moving it to the end of the list. Though it still lacks a save system to avoid it reseting your progress every reload. There's also a start of a function to fully complete a complex achievement with a single button, but it's not working yet. There also is a guide page i was working on unsure if it had purpose, it's really incomplete and not really useful but it's there.
+Simple achievments page also lacks most checkboxes and should be generated through javascript too.
