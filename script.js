@@ -1,9 +1,9 @@
 let sectionPrincipale = document.querySelector('section');
 
-// fonction qui créée une balise div, avec son image, et son formulaire
-// à chaque achievement trouvé dans le .json
-// rempli le formulaire avec une checkbox par élément dans la liste des checkboxes
-// variable "nom" dans la fonction permet d'aller chercher l'objet en question dans le .json
+// function creating div tag, with its pictures and form
+// for each achievement found in the .json
+// fill the form with a checkbox for each element found in the list
+// "nom" variable in the function allows to parse the correct object in .json file
 async function recupChecklist(nom) {
     let test = await fetch('./checklist.json');
     const dataTransformed = await test.json();
@@ -22,11 +22,9 @@ async function recupChecklist(nom) {
 
     const newForm = document.createElement('form');
     newDiv.appendChild(newForm);
-    // let newButton = "<button>Completed</button>"
     const newButton = document.createElement('button');
     newButton.innerText = "Completed"
     newButton.setAttribute("class", "Button");
-    // newDiv.appendChild(newButton);
 
     let valueCheckbox = dataTransformed.complexAchievements[nom].value;
     let newInput = null;
@@ -34,13 +32,13 @@ async function recupChecklist(nom) {
     let newBreak = "<br>"
     newLabel.innerText = "";
 
-    // Boucle qui créée les checkboxs pour chaque éléments du tableau
+    // Loop creationg checkboxes for each element of the array
     for (const nomCheckbox of dataTransformed.complexAchievements[nom].checkboxes) {
 
         newLabel = document.createElement('label');
         newInput = document.createElement('input');
 
-        // ajout des attributs aux checkbox et labels pour les liés
+        // adding attributes to checkboxes and labels to link them
         newInput.setAttribute("type", "checkbox");
         newInput.setAttribute("name", nomCheckbox);
         newInput.setAttribute("value", valueCheckbox);
@@ -52,12 +50,11 @@ async function recupChecklist(nom) {
         newForm.append(newLabel);
         newForm.innerHTML += newBreak;
     }
-
-    // appel de la fonction pour changer ordre + grisage  
-    // un appel classique de la fonction
-    // pour faire une vérification au chargement de la page
+ 
+    // Call to function to changer order and greying
+    // to check completiong on page load
     completedAchievement(nom);
-    // et un sur l'event listener des checkbox qui sera passé par référence
+    // and a checkbox event listener
     document.getElementById(nom).addEventListener('click', () => {
         completedAchievement(nom);
     });
@@ -65,14 +62,15 @@ async function recupChecklist(nom) {
     
 }
 
-//appel de la fonction pour chacun des objets
-let complexAchievement = ["supremeWeaponReinforcement", "masterOfInfusions", "masterOfSorceries", "masterOfPyromancies", "masterOfMiracles", "masterOfRings", "masterOfExpressions", "ultimateBonfire", "ultimateEstus"];
+// Call to function for each achievement
+let complexAchievement = ["supremeWeaponReinforcement", "masterOfInfusions",
+    "masterOfSorceries", "masterOfPyromancies", "masterOfMiracles",
+    "masterOfRings", "masterOfExpressions", "ultimateBonfire", "ultimateEstus"];
 complexAchievement.forEach((value) => {
     recupChecklist(value)
 });
 
-
-//fonction pour mettre une boîte à la fin de la liste
+// function to put a box at the end of the list
 async function changeOrder(nom) {
     
     let test = await fetch('./checklist.json');
@@ -81,7 +79,7 @@ async function changeOrder(nom) {
     document.getElementById(nom).setAttribute("style", ordre);
 }
 
-//fonction pour remettre une boîte à sa position initiale
+// function to reset the position of a box
 async function resetOrder(nom) {
     let test = await fetch('./checklist.json');
     const dataTransformed = await test.json();
@@ -89,8 +87,8 @@ async function resetOrder(nom) {
     document.getElementById(nom).setAttribute("style", ordre);
 }
 
-// fonction qui vérifie si chaque checkbox est cochée ou non,
-// et change la position et la classe si l'achievement est complété
+// function checking if each checkbox is checked or not
+// and changes position and class if achievement is completed
 function completedAchievement(identification) {
     let toutLesInput = document.querySelectorAll("#" + identification + " > form > input");
     let achievementBeingChecked = document.getElementById(identification);
@@ -107,23 +105,28 @@ function completedAchievement(identification) {
     achievementBeingChecked.setAttribute("class", "completed");
 }
 
+
+/* WIP of full completion button, not working
+
 function completionButton() {
     console.log("bouton pressé")
-    // let toutLesInput = document.querySelectorAll("#" + identification + " > form > input");
-    // // let achievementBeingChecked = document.getElementById(identification);
-    // for (let value of toutLesInput) {
-    //     if (value.checked == false) {
-    //         value.checked == true
-    //     }
-    // };
+    let toutLesInput = document.querySelectorAll("#" + identification + " > form > input");
+    // let achievementBeingChecked = document.getElementById(identification);
+    for (let value of toutLesInput) {
+        if (value.checked == false) {
+            value.checked == true
+        }
+    };
 }
 
-// let Buttons = document.querySelector("#supremeWeaponReinforcementButton");
+let Buttons = document.querySelector("#supremeWeaponReinforcementButton");
 
-// Buttons.addEventListener('click', completionButton)
+Buttons.addEventListener('click', completionButton)
 
-// const leH1 = document.querySelectorAll("button")
-// // On ajoute l'événement (écouteur) sur un ou plusieurs éléments
-// leH1.addEventListener('click', () => {
-//     console.log('Mon titre principal a déclenché l\'événement `click`');
-// });
+const leH1 = document.querySelectorAll("button")
+// On ajoute l'événement (écouteur) sur un ou plusieurs éléments
+leH1.addEventListener('click', () => {
+    console.log('Mon titre principal a déclenché l\'événement `click`');
+});
+
+*/
